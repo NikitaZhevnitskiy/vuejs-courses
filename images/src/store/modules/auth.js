@@ -1,4 +1,6 @@
 import api from '../../api/imgur'
+import qs from 'qs'
+
 
 const state ={
   token: null
@@ -14,6 +16,10 @@ const actions = {
   },
   logout: ({ commit }) => {
     commit('setToken', null);
+  },
+  finalizeLogin: ({ commit }, hash) => {
+    const q = qs.parse(hash.replace('#',''));
+    commit('setToken', q.access_token)
   }
 };
 
