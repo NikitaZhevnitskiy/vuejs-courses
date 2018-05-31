@@ -5,7 +5,15 @@
     </a>
 
     <div class="right menu">
-      <a href="#" class="ui item" @click="login">Login</a>
+      <div v-if="isLoggedIn" class="horizontal">
+        <a class="item" href="">Galleries</a>
+        <a class="item" href="">Upload</a>
+        <a class="item" href="">Logout</a>
+
+
+      </div>
+
+      <a v-else href="#" class="ui item" @click="login">Login</a>
     </div>
 
   </div>
@@ -14,16 +22,21 @@
 
 <script>
 
-import { mapActions } from 'vuex';
+  import { mapActions, mapGetters } from 'vuex';
 
-export default {
-  name: 'AppHeader',
-  methods: mapActions(['login'])
-};
+  export default {
+    name: 'AppHeader',
+    computed:mapGetters(['isLoggedIn']),
+    methods: mapActions(['login'])
+  };
 
 </script>
 
-<style>
+<style scoped>
 
+.horizontal {
+  display: flex;
+
+}
 </style>
 

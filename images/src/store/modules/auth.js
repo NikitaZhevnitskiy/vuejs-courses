@@ -3,7 +3,7 @@ import qs from 'qs'
 
 
 const state ={
-  token: null
+  token: window.localStorage.getItem('imgur_token')
 };
 
 const getters = {
@@ -20,6 +20,7 @@ const actions = {
   finalizeLogin: ({ commit }, hash) => {
     const q = qs.parse(hash.replace('#',''));
     commit('setToken', q.access_token)
+    window.localStorage.setItem('imgur_token', q.access_token)
   }
 };
 
