@@ -1,19 +1,19 @@
 <template>
   <div class="ui secondary pointing menu">
-    <a href="/" class="active item">
+    <router-link to="/" class="active item">
       Image
-    </a>
+    </router-link>
 
     <div class="right menu">
       <div v-if="isLoggedIn" class="horizontal">
-        <a class="item" href="">Galleries</a>
-        <a class="item" href="">Upload</a>
-        <a class="item" href="">Logout</a>
-
-
+        <router-link to="/" class="item">Galleries</router-link>
+        <router-link to="/upload" class="item">Upload</router-link>
+        <a class="item" @click="logout">Logout</a>
       </div>
 
-      <a v-else href="#" class="ui item" @click="login">Login</a>
+      <a v-else href="#" class="ui item" @click="login">
+        Login
+      </a>
     </div>
 
   </div>
@@ -21,15 +21,12 @@
 
 
 <script>
-
   import { mapActions, mapGetters } from 'vuex';
-
   export default {
     name: 'AppHeader',
-    computed:mapGetters(['isLoggedIn']),
-    methods: mapActions(['login'])
+    computed: mapGetters(['isLoggedIn']),
+    methods: mapActions(['login', 'logout'])
   };
-
 </script>
 
 <style scoped>
