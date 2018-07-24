@@ -21,7 +21,8 @@
               class="btn btn-success"
               @click="buyStock"
               :disabled="quantity <= 0 || !Number.isInteger(quantity)"
-          >Buy</button>
+          >Buy
+          </button>
         </div>
       </div>
     </div>
@@ -34,6 +35,11 @@
     data() {
       return {
         quantity: 0
+      }
+    },
+    computed: {
+      funds() {
+        return this.$store.getters.funds;
       }
     },
     methods: {
