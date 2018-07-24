@@ -1,3 +1,5 @@
 <template>
-  <h1>Portfolio comp</h1>
+  <div>
+
+  </div>
 </template>

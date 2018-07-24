@@ -11,16 +11,16 @@
         <div class="pull-left">
           <input
               type="number"
-              class="form-controll"
+              class="form-control"
               placeholder="Quantity"
-              v-model="quantity"
+              v-model.number="quantity"
           >
         </div>
         <div class="pull-right">
           <button
               class="btn btn-success"
               @click="buyStock"
-              :disabled="quantity <= 0"
+              :disabled="quantity <= 0 || !Number.isInteger(quantity)"
           >Buy</button>
         </div>
       </div>
@@ -32,7 +32,9 @@
   export default {
     props: ['stock'],
     data() {
-      return { quantity: 0 }
+      return {
+        quantity: 0
+      }
     },
     methods: {
       buyStock() {
@@ -41,8 +43,8 @@
           stockPrice: this.stock.price,
           quantity: this.quantity
         };
-        console.log(order);
-        this.quantity = 0
+        this.$store.dispatch('buyStock', order);
+        this.quantity = 0;
       }
     }
   }
